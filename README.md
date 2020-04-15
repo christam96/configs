@@ -1,7 +1,7 @@
 # vim-config
 Version control for ~/.vimrc config file. Using for the purpose of tracking changes over time.
 
-Relevent sources:
+Relevent resources:
 
 https://linuxhint.com/configure_vim_vimrc/
 
