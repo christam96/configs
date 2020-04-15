@@ -1,5 +1,5 @@
 # config
-Configuration files for bash and vim, customized by myself.
+Personally customized configuration files for bash and vim.
 
 Version control for ~/.vimrc config file. Using for the purpose of tracking changes over time.
 
