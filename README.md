@@ -1,2 +1,2 @@
 # vim-config
-Version control for ~/.vimrc config file. Will use to keep an eye on changes over time.
+Version control for ~/.vimrc config file. Using for the purpose of tracking changes over time.
