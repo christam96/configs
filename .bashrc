@@ -28,6 +28,7 @@ alias ..='cd ..'
 alias mv='mv -i'
 alias rm='rm -i'
 alias df='df -h'
+alias qt='qutebrowser :fullscreen'
 shopt -s autocd
 
 # Custom colours
