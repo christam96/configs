@@ -1,0 +1,51 @@
+{
+    "child": {
+        "child1": {
+            "directory": "\/home\/chris",
+            "height": 167,
+            "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+            "readOnly": false,
+            "synchronizedInput": true,
+            "type": "Terminal",
+            "uuid": "8bdb26af-28a3-4d91-90d6-7d0b9beb146f",
+            "width": 847
+        },
+        "child2": {
+            "child1": {
+                "directory": "\/home\/chris",
+                "height": 283,
+                "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                "readOnly": false,
+                "synchronizedInput": true,
+                "type": "Terminal",
+                "uuid": "1e98f1c3-f2fe-4982-a190-05364b8be0c2",
+                "width": 847
+            },
+            "child2": {
+                "directory": "\/home\/chris",
+                "height": 523,
+                "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                "readOnly": false,
+                "synchronizedInput": true,
+                "type": "Terminal",
+                "uuid": "eb72f6dc-308d-4b2e-a669-9f0e669ad146",
+                "width": 847
+            },
+            "orientation": 1,
+            "position": 29,
+            "ratio": 0.350681536555142503,
+            "type": "Paned"
+        },
+        "orientation": 1,
+        "position": 17,
+        "ratio": 0.17128205128205129,
+        "type": "Paned"
+    },
+    "height": 975,
+    "name": "Default",
+    "synchronizedInput": false,
+    "type": "Session",
+    "uuid": "f1a4493b-7d0e-49ef-89a6-8ef37f9f794a",
+    "version": "1.0",
+    "width": 847
+}

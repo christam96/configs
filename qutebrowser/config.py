@@ -1,4 +1,6 @@
 '''
+Qutebrowser Config
+
 Template config.py: https://www.ii.com/qutebrowser-configpy/
 '''
 
