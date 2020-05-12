@@ -48,13 +48,13 @@ LS_COLORS=$LS_COLORS:'di=1;97:' ; export LS_COLORS
 export HISTCONTROL=ignoreboth # ignores duplicates in command history
 
 # Uncomment to enable powerline-shell
-#function _update_ps1() {
-#    PS1=$(powerline-shell $?)
-#}
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
 
-#if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-#    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-#fi
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 
 # Enable Vim keybindings
 set -o vi
@@ -63,9 +63,9 @@ set -o vi
 alias vim='vimx'
 
 # Custom key bindings
-bind '"\C-v":"open_with_fzf\n"'
+bind '"\C-v":"vim_with_fzf\n"'
 bind '"\C-o":"cd_with_fzf\n"'
-open_with_fzf() {
+vim_with_fzf() {
     fd -t f -H -I | fzf -m | xargs -ro -d "\n" vim 2>&-
 }
 cd_with_fzf() {
