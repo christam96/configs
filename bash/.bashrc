@@ -22,13 +22,11 @@ export PATH
 # Custom aliases
 alias jn='jupyter notebook'
 alias jl='jupyter lab'
-alias ff='firefox'
 alias la='ls -A'
 alias ..='cd ..'
 alias mv='mv -i'
 alias rm='rm -i'
-alias df='df -h'
-alias qt='qutebrowser :fullscreen'
+alias df='df -ha'
 alias open='xdg-open'
 alias nmutt='neomutt'
 shopt -s autocd
@@ -63,10 +61,10 @@ set -o vi
 alias vim='vimx'
 
 # Custom key bindings
-bind '"\C-v":"vim_with_fzf\n"'
+bind '"\C-f":"vim_with_fzf\n"'
 bind '"\C-o":"cd_with_fzf\n"'
 vim_with_fzf() {
-    fd -t f -H -I | fzf -m | xargs -ro -d "\n" vim 2>&-
+    fd -t f -H -I | fzf -m | xargs -ro -d "\n" vimx 2>&-
 }
 cd_with_fzf() {
     cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"

@@ -1,6 +1,5 @@
 {
   "segments": [
-    "newline",
     "virtual_env",
     "hostname",
     "ssh",

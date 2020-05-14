@@ -1,6 +1,12 @@
 "====================="
 "     VIM PLUGINS     "
 "====================="
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ " 
 " {{{ PRODUCTIVITY }}}
@@ -9,6 +15,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-surround'
 " {{{ AESTHETICS }}}
 Plug 'itchyny/lightline.vim'
 set laststatus=2 " Sets bar powerbar for lightline
@@ -24,6 +31,7 @@ Plug 'cocopon/iceberg.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'whatyouhide/vim-gotham'
+Plug 'rakr/vim-one'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ " 
 call plug#end()
 
@@ -96,11 +104,14 @@ nmap <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 " Mappings
-map <F2> :echo 'Current time is ' . strftime('%c')<CR>
-map <C-t> :tabnew <CR> 
-map <C-w> :tabclose<CR>
-map <S-J> :tabp<CR>
-map <S-K> :tabn<CR
+nmap <F2> :echo 'Current time is ' . strftime('%c')<CR>
+nmap <C-t> :tabnew <CR> 
+nmap <C-w> :tabclose<CR>
+nmap <S-J> :tabp<CR>
+nmap <S-K> :tabn<CR>
+nmap QQ :q!<CR>
+nmap :light :set background=light
+nmap ? :Diff
 " Emulate system clipboard shortcuts
 vnoremap <C-c> "+y  
 inoremap <C-v> <ESC>"+pa
@@ -123,7 +134,7 @@ map <F5> :setlocal spell! spelllang=en_ca<CR>
 "         FZF         "
 "====================="
 " Open FZF search in Vim
-map <C-f> <Esc><Esc>:FZF<CR> 
+map <C-f> <Esc><Esc>:FZF ~<CR> 
 inoremap <C-f> <Esc>:BLines!<CR>
 " Let FZF find hidden files and folders
 let $FZF_DEFAULT_COMMAND='find . -not -path "*/\.git*" -type f -print'
@@ -132,28 +143,43 @@ let $FZF_DEFAULT_COMMAND='find . -not -path "*/\.git*" -type f -print'
 "     Indent Line     "
 "====================="
 set listchars=tab:\|\ 
-set list
 
 "====================="
 "      VIM WIKI       "
 "====================="
 " Requirements for Vim Wiki (other 'sets' already set)
 set nocompatible
-
+let vimwiki_dir_link = 'index'
 " {{{ Define Wikis }}}
-let vimwiki = {}
-let vimwiki.path = '~/Wikis/vimwiki/'
-let vimwiki.path_html = '~/Wikis/vimwiki/'
+let Wikis = {}
+let Wikis.path = '~/Wikis/'
+let Wikis.path_html = '~/Wikis/'
+let Wikis.ext = '.md'
+let Wikis.syntax = 'markdown'
 
-let avowiki = {}
-let avowiki.path = '~/Avo/avowiki/'
-let avowiki.path_html = '~/Avo/avowiki/'
+let Personal = {}
+let Personal.path = '~/Avo/Wikis/Personal/'
+let Personal.path_html = '~/Avo/Wikis/Personal/'
+let Personal.ext = '.md'
+let Personal.syntax = 'markdown'
 
-let g:vimwiki_list = [vimwiki, avowiki]
+let AvocadoCore = {}
+let AvocadoCore.path = '~/Avo/Wikis/AvocadoCore/'
+let AvocadoCore.path_html = '~/Avo/Wikis/AvocadoCore/'
+let AvocadoCore.ext = '.md'
+let AvocadoCore.syntax = 'markdown'
+
+let ML = {}
+let ML.path = '~/Avo/Wikis/ML/'
+let ML.path_html = '~/Avo/Wikis/ML/'
+let ML.ext = '.md'
+let ML.syntax = 'markdown'
+
+let g:vimwiki_list = [Wikis, AvocadoCore, ML]
 
 " {{{ Mappings }}}
-nmap <Leader><Leader> <Plug>VimwikiGoBackLink
-nmap <Leader>wf <Plug>VimwikiFollowLink
+nmap , <Plug>VimwikiGoBackLink
+nmap . <Plug>VimwikiFollowLink
 
 command! Diary VimwikiDiaryIndex
 augroup vimwikigroup
