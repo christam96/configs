@@ -150,6 +150,7 @@ set listchars=tab:\|\
 " Requirements for Vim Wiki (other 'sets' already set)
 set nocompatible
 let vimwiki_dir_link = 'index'
+let g:vimwiki_folding = ''
 " {{{ Define Wikis }}}
 let Wikis = {}
 let Wikis.path = '~/Wikis/'
@@ -178,8 +179,10 @@ let ML.syntax = 'markdown'
 let g:vimwiki_list = [Wikis, AvocadoCore, ML]
 
 " {{{ Mappings }}}
-nmap , <Plug>VimwikiGoBackLink
-nmap . <Plug>VimwikiFollowLink
+nmap < <Plug>VimwikiGoBackLink
+nmap > <Plug>VimwikiFollowLink
+nmap . <Plug>VimwikiNextLink
+nmap , <Plug>VimwikiPrevLink
 
 command! Diary VimwikiDiaryIndex
 augroup vimwikigroup
