@@ -47,9 +47,10 @@ syntax on
 "colorscheme palenight
 "colorscheme alduin
 "colorscheme sierra
+colorscheme peachpuff
 "colorscheme iceberg
 "set background=light
-"colorscheme PaperColor
+" colorscheme PaperColor
 "colorscheme deep-space
 "colorscheme gotham
 "let g:palenight_terminal_italics=1 " Enables italics
@@ -111,7 +112,7 @@ nmap <S-J> :tabp<CR>
 nmap <S-K> :tabn<CR>
 nmap QQ :q!<CR>
 nmap :light :set background=light
-nmap ? :Diff
+nmap ? :DiffSaved
 " Emulate system clipboard shortcuts
 vnoremap <C-c> "+y  
 inoremap <C-v> <ESC>"+pa
