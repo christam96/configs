@@ -8,5 +8,31 @@ config_version: 2
 settings:
   auto_save.session:
     global: true
+  bindings.commands:
+    global:
+      normal:
+        ',': tab-prev
+        .: tab-next
+        D: null
+        J: tab-prev
+        K: tab-next
+        d: null
+        h: back
+        l: forward
+        t: open -t
+        w: tab-close
+        x: config-cycle statusbar.show always switching
+        z: config-cycle tabs.show always switching
+  content.notifications:
+    https://www.reddit.com: false
+    https://www.youtube.com: false
+  statusbar.hide:
+    global: false
+  tabs.background:
+    global: true
+  tabs.show:
+    global: always
   window.hide_decoration:
     global: true
+  zoom.default:
+    global: 185%
