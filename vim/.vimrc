@@ -124,7 +124,7 @@ nmap , :tabp<CR>
 nmap . :tabn<CR>
 nmap QQ :q!<CR>
 nmap :light :set background=light
-nmap <C-?> :DiffChangesDiffToggle<CR>
+nmap <C-?> :w !git diff % -<CR>
 nmap <C-l> :LLPStartPreview<CR>
 " Emulate system clipboard shortcuts
 vnoremap <C-c> "+y  
