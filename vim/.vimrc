@@ -16,6 +16,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-surround'
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 " {{{ AESTHETICS }}}
 Plug 'itchyny/lightline.vim'
 set laststatus=2 " Sets bar powerbar for lightline
@@ -47,10 +49,10 @@ syntax on
 "colorscheme palenight
 "colorscheme alduin
 "colorscheme sierra
-colorscheme peachpuff
-"colorscheme iceberg
+"colorscheme peachpuff
+colorscheme iceberg
 "set background=light
-" colorscheme PaperColor
+"colorscheme PaperColor
 "colorscheme deep-space
 "colorscheme gotham
 "let g:palenight_terminal_italics=1 " Enables italics
@@ -71,6 +73,14 @@ for item in items
     exe "nnoremap vi".item." T".item."vt".item
     exe "nnoremap va".item." F".item."vf".item
 endfor
+
+"====================="
+"   LIVE LATEX PREVIEW "
+"====================="
+" Set vim option updatetime to smaller value, affects frequency that LaTeX
+" preview PDF is updated
+autocmd Filetype tex setl updatetime=3000
+let g:livepreview_previewer='evince'
 
 " {{{ Spaces & Tabs }}}
 set tabstop=4 " number of visual spaces per TAB
@@ -110,9 +120,12 @@ nmap <C-t> :tabnew <CR>
 nmap <C-w> :tabclose<CR>
 nmap <S-J> :tabp<CR>
 nmap <S-K> :tabn<CR>
+nmap , :tabp<CR>
+nmap . :tabn<CR>
 nmap QQ :q!<CR>
 nmap :light :set background=light
-nmap ? :DiffSaved
+nmap <C-?> :DiffChangesDiffToggle<CR>
+nmap <C-l> :LLPStartPreview<CR>
 " Emulate system clipboard shortcuts
 vnoremap <C-c> "+y  
 inoremap <C-v> <ESC>"+pa
@@ -159,25 +172,7 @@ let Wikis.path_html = '~/Wikis/'
 let Wikis.ext = '.md'
 let Wikis.syntax = 'markdown'
 
-let Personal = {}
-let Personal.path = '~/Avo/Wikis/Personal/'
-let Personal.path_html = '~/Avo/Wikis/Personal/'
-let Personal.ext = '.md'
-let Personal.syntax = 'markdown'
-
-let AvocadoCore = {}
-let AvocadoCore.path = '~/Avo/Wikis/AvocadoCore/'
-let AvocadoCore.path_html = '~/Avo/Wikis/AvocadoCore/'
-let AvocadoCore.ext = '.md'
-let AvocadoCore.syntax = 'markdown'
-
-let ML = {}
-let ML.path = '~/Avo/Wikis/ML/'
-let ML.path_html = '~/Avo/Wikis/ML/'
-let ML.ext = '.md'
-let ML.syntax = 'markdown'
-
-let g:vimwiki_list = [Wikis, AvocadoCore, ML]
+let g:vimwiki_list = [Wikis]
 
 " {{{ Mappings }}}
 nmap < <Plug>VimwikiGoBackLink
