@@ -1,0 +1,31 @@
+# Create a branch X
+git branch X
+
+# View branches
+git branch
+
+# Delete branch X
+git branch -d X
+
+# Checkout branch X
+git checkout X
+
+# Add changes (while in new branch X)
+git add .
+
+# Commit the changes you just added in branch X
+git commit -m X (can use branch name to replace message string)
+
+# Checkout back to master branch
+git checkout master # Can view new changes here
+
+# Merge changes from branch X into master branch
+git merge X -m X
+
+# Push branches to remote
+git push origin master
+git push origin X
+
+# Once new branch X has been successfully merged, we can now delete it locally and remotely
+git branch -d X
+git push origin --delete X
