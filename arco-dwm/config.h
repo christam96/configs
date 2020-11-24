@@ -72,13 +72,12 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *rofi[]  = { "rofi", "-show", "run", NULL };
 static const char *filecmd[]  = { "nautilus", NULL };
 static const char *firefox[]  = { "firefox", NULL };
 static const char *termite[]  = { "termite", NULL };
-static const char *ranger[]  = { "termite", "-e", "ranger", NULL };
 static const char *emacs[]  = { "emacs", NULL };
-static const char *incbrightness[]  = { "xbacklight", "-inc", "10", NULL };
-static const char *decbrightness[]  = { "xbacklight", "-dec", "10", NULL };
+static const char *dropdown[]  = { "xfce4-terminal", "--drop-down", NULL };
 
 #include "selfrestart.c"
 #include "shiftview.c"
@@ -87,20 +86,17 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox } },
 	{ MODKEY,                       XK_Menu,   spawn,          {.v = termite } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = ranger } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = emacs } },
-	{ MODKEY,                       XK_e,      spawn,          {.v = emacs } },
-	/*{ MODKEY,                       XK_F1,     spawn,          {.v = incbrightness } },
-	{ MODKEY,                       XK_F2,     spawn,          {.v = decbrightness } },*/
+	{ MODKEY,                       XK_x,      spawn,          {.v = dropdown } },
 	{ MODKEY|ShiftMask,		XK_j,	   rotatestack,	   {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_k,	   rotatestack,	   {.i = -1 } },
 
-
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = filecmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = rofi } },
+	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = filecmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_Tab, focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },	
@@ -113,13 +109,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY,            			XK_q,      killclient,     {0} },
+	{ MODKEY,            		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -127,7 +121,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
-    { MODKEY|ShiftMask,		        XK_space,  shiftview,	   { .i = 1 } },
+        { MODKEY|ShiftMask,		XK_space,  shiftview,	   { .i = 1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
