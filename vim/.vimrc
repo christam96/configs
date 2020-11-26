@@ -101,7 +101,7 @@ set hlsearch " highlight matches
 set ignorecase " enable case insensitive searching
 set smartcase " if search pattern contains upper case, enable case sensitive searching
 " turn off search highlight
-nnoremap <CR> :nohlsearch<CR><CR>
+nnoremap <CR> :nohlsearch<CR>
 
 " {{{ Movement }}}
 " Make sure lines are traversed in a non-dumb way
@@ -125,7 +125,7 @@ nmap . :tabn<CR>
 nmap QQ :q!<CR>
 nmap :light :set background=light
 nmap <C-?> :w !git diff % -<CR>
-nmap <C-l> :LLPStartPreview<CR>
+nmap LLP :LLPStartPreview<CR>
 " Emulate system clipboard shortcuts
 vnoremap <C-c> "+y  
 inoremap <C-v> <ESC>"+pa
