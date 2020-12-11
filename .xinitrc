@@ -19,3 +19,5 @@ if [systemd-detect-virt = "oracle"];
 	/usr/bin/VBoxClient-all
 fi
 
+# dwm status bar
+# /home/chris/dwm-bar/dwm_bar.sh &

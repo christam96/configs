@@ -1,2 +1,4 @@
 xset r rate 160 60 &
 setxkbmap -option caps:escape &
+/home/chris/Scripts/dwm-bar/dwm_bar.sh &
+amixer -D pulse sset Master 50% &
