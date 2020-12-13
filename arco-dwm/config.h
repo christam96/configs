@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 6;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 40;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -10,8 +10,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Noto Sans Mono:size=16" };
-static const char dmenufont[]       = "monospace:size=16";
+static const char *fonts[]          = { "Noto Sans Mono:size=10" };
+static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_2[]      	    = "#f0c674";
 static const char col_gray3[]       = "#bbbbbb";
@@ -78,6 +78,9 @@ static const char *firefox[]  = { "firefox", NULL };
 static const char *termite[]  = { "termite", NULL };
 static const char *emacs[]  = { "emacs", NULL };
 static const char *dropdown[]  = { "xfce4-terminal", "--drop-down", NULL };
+static const char *volumeinc[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%+", NULL };
+static const char *volumedec[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
+static const char *volumemute[]  = { "amixer", "sset", "Master", "toggle", NULL };
 
 #include "selfrestart.c"
 #include "shiftview.c"
@@ -88,8 +91,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Menu,   spawn,          {.v = termite } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = emacs } },
 	{ MODKEY,                       XK_space,  spawn,          {.v = dropdown } },
-	{ MODKEY|ShiftMask,		XK_j,	   rotatestack,	   {.i = +1 } },
-	{ MODKEY|ShiftMask,		XK_k,	   rotatestack,	   {.i = -1 } },
+	{ MODKEY|ShiftMask,		        XK_j,	   rotatestack,	   {.i = +1 } },
+	{ MODKEY|ShiftMask,     		XK_k,	   rotatestack,	   {.i = -1 } },
+	{ 0,                            XK_F2,     spawn,          {.v = volumedec } },
+	{ 0,                            XK_F3,     spawn,          {.v = volumeinc } },
+	{ 0,                            XK_F4,     spawn,          {.v = volumemute } },
 
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = rofi } },
@@ -116,6 +122,7 @@ static Key keys[] = {
 	/*{ MODKEY,                       XK_space,  setlayout,      {0} },*/
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_grave,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
