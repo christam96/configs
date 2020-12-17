@@ -47,12 +47,12 @@
 #    spotify
 
 #Rofi Fullscreen
-super + F11
-    rofi -show run -fullscreen
+#super + F11
+#    rofi -show run -fullscreen
 
 #Rofi
-super + F12
-    rofi -show run
+#super + F12
+#    rofi -show run
 
 #################################################################
 # SUPER + ... KEYS
@@ -67,8 +67,8 @@ super + F12
 #    vivaldi-stable
 
 #Conky-toggle
-super + c
-    conky-toggle
+#super + c
+#    conky-toggle
 
 #Htop
 #super + h
@@ -99,8 +99,8 @@ super + x
 #    termite
 
 #Xkill
-super + Escape
-    xkill
+#super + Escape
+#    xkill
 
 #Keyboard dependent
 #termite
@@ -112,21 +112,21 @@ super + Escape
 #################################################################
 
 #File-Manager
-super + shift + Return
-	nautilus
+#super + shift + Return
+#	nautilus
 
 #Keyboard dependent
 #File-Manager
-super + shift + KP_Enter
-	thunar
+#super + shift + KP_Enter
+#	thunar
 
 #dmenu
 #super + shift + d
 #	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
 
 #reload sxhkd:
-super + shift + s
-	pkill -USR1 -x sxhkd
+#super + shift + s
+#	pkill -USR1 -x sxhkd
 
 
 #################################################################
@@ -134,12 +134,12 @@ super + shift + s
 #################################################################
 
 #arcolinux-welcome-app
-ctrl + alt + w
-     arcolinux-welcome-app
+#ctrl + alt + w
+#     arcolinux-welcome-app
 
 #arcolinux-tweak-tool
-ctrl + alt + e
-    arcolinux-tweak-tool
+#ctrl + alt + e
+#    arcolinux-tweak-tool
 
 #conky-rotate
 #ctrl + alt + Next
@@ -166,36 +166,36 @@ ctrl + alt + e
 #     firefox
 
 #Nitrogen
-ctrl + alt + n
-     nitrogen
+#ctrl + alt + n
+#     nitrogen
 
 #arcolinux-logout
 #ctrl + alt + k
 #     arcolinux-logout
 
 #arcolinux-logout
-ctrl + alt + l
-    arcolinux-logout
+#ctrl + alt + l
+#    arcolinux-logout
 
 #Pamac-manager
-ctrl + alt + p
-    pamac-manager
+#ctrl + alt + p
+#    pamac-manager
 
 #Xfce4-settings-manager
-ctrl + alt + m
-     xfce4-settings-manager
+#ctrl + alt + m
+#     xfce4-settings-manager
 
 #Pulse Audio Control
-ctrl + alt + u
-     pavucontrol
+#ctrl + alt + u
+#     pavucontrol
 
 #Rofi theme selector
-ctrl + alt + r
-  rofi-theme-selector
+#ctrl + alt + r
+#  rofi-theme-selector
 
 #Spotify
-ctrl + alt + s
-   spotify
+#ctrl + alt + s
+#   spotify
 
 #Termite
 #ctrl + alt + Return
@@ -210,8 +210,8 @@ ctrl + alt + s
 #    vivaldi-stable
 
 #Xfce4-appfinder
-ctrl + alt + a
-    xfce4-appfinder
+#ctrl + alt + a
+#    xfce4-appfinder
 
 
 #Keyboard dependent
@@ -229,16 +229,16 @@ ctrl + alt + a
 #    variety -t
 
 #Wallpaper next
-alt + n
-    variety -n
+#alt + n
+#    variety -n
 
 #Wallpaper previous
-alt + Shift + n
-    variety -p
+#alt + Shift + n
+#    variety -p
 
 #Wallpaper favorite
-alt + f
-    variety -f
+#alt + f
+#    variety -f
 
 #Wallpaper previous
 #alt + Left
@@ -257,12 +257,12 @@ alt + f
 #    variety --resume
 
 #Gmrun
-alt + F2
-    gmrun
+#alt + F2
+#    gmrun
 
 #Xfce4-appfinder
-alt + F3
-    xfce4-appfinder
+#alt + F3
+#    xfce4-appfinder
 
 
 #################################################################
@@ -303,12 +303,12 @@ alt + F3
 #################################################################
 
 #Scrot
-Print
-    scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
+#Print
+#    scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
 
 #screeenshooter
-ctrl + Print
-     xfce4-screenshooter
+#ctrl + Print
+#     xfce4-screenshooter
 
 #Gnome-Screenshot
 #ctrl + shift + Print
@@ -385,5 +385,5 @@ XF86MonBrightnessDown
 #################################################################
 
 #Picom Toggle
-ctrl + alt + o
-    ~/.config/arco-dwm/scripts/picom-toggle.sh
+#ctrl + alt + o
+#    ~/.config/arco-dwm/scripts/picom-toggle.sh

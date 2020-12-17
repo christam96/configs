@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 40;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -60,6 +60,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod1Mask
+#define CTRL control
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -80,7 +81,10 @@ static const char *emacs[]  = { "emacs", NULL };
 static const char *dropdown[]  = { "xfce4-terminal", "--drop-down", NULL };
 static const char *volumeinc[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%+", NULL };
 static const char *volumedec[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
-static const char *volumemute[]  = { "amixer", "sset", "Master", "toggle", NULL };
+static const char *togglemute[]  = { "amixer", "sset", "Master", "toggle", NULL };
+static const char *playerctlprev[]  = { "playerctl", "previous", NULL };
+static const char *toggleplay[]  = { "playerctl", "play-pause", NULL };
+static const char *playerctlnext[]  = { "playerctl", "next", NULL };
 
 #include "selfrestart.c"
 #include "shiftview.c"
@@ -95,7 +99,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     		XK_k,	   rotatestack,	   {.i = -1 } },
 	{ 0,                            XK_F2,     spawn,          {.v = volumedec } },
 	{ 0,                            XK_F3,     spawn,          {.v = volumeinc } },
-	{ 0,                            XK_F4,     spawn,          {.v = volumemute } },
+	{ 0,                            XK_F4,     spawn,          {.v = togglemute } },
+	{ 0,                            XK_F6,     spawn,          {.v = playerctlprev } },
+	{ 0,                            XK_F7,     spawn,          {.v = toggleplay } },
+	{ 0,                            XK_F8,     spawn,          {.v = playerctlnext } },
 
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = rofi } },
