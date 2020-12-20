@@ -1,0 +1,52 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Custom aliases
+alias jn='jupyter notebook'
+alias jl='jupyter lab'
+alias la='ls -A'
+alias ..='cd ..'
+alias mv='mv -i'
+alias rm='rm -i'
+alias df='df -ha'
+alias open='xdg-open'
+alias clear='clear && colorscript -r'
+alias vi='vim'
+alias 1='bash ~/Scripts/termite-theme/base16ashes.sh'
+alias 2='bash ~/Scripts/termite-theme/sol-light.sh'
+alias 3='bash ~/Scripts/termite-theme/codenight.sh'
+alias 4='bash ~/Scripts/termite-theme/tomorrownight.sh'
+shopt -s autocd
+
+# Exports
+export HISTCONTROL=ignoreboth # ignores duplicates in command history
+
+# Enable Vim keybindings
+set -o vi
+
+# Custom key bindings
+bind '"\C-f":"vim_with_fzf\n"'
+bind '"\C-o":"cd_with_fzf\n"'
+vim_with_fzf() {
+    fd -t f -H -I | fzf -m | xargs -ro -d "\n" vim 2>&-
+}
+cd_with_fzf() {
+    cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+}
+
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
+fi
+
+# Run starship terminal prompt
+eval "$(starship init bash)"
