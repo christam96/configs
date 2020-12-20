@@ -1,0 +1,84 @@
+format = """
+$time\
+$battery\
+$conda\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$line_break\
+$status\
+$character"""
+
+add_newline = true
+
+
+[battery]
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
+full_symbol = ""
+
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+
+[[battery.display]]
+threshold = 60
+style = "bold yellow"
+
+
+[[battery.display]]
+threshold = 100
+style = "bold blue"
+
+
+[character]
+success_symbol = "[✔](bold green) "
+error_symbol = "[✗](bold red) "
+
+[conda]
+format = "[$symbol$environment](dimmed green) "
+ignore_base = false
+symbol = ""
+
+
+[directory]
+truncation_length = 8
+truncate_to_repo = false
+
+
+[git_branch]
+symbol = " "
+
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[git_status]
+conflicted = "🏳"
+ahead = "🏎"
+behind = "😰"
+diverged = "😵"
+untracked = "!"
+stashed = "📦"
+modified = "✍"
+staged = '[++\($count\)](green)'
+renamed = "👅"
+deleted = "🗑"
+
+
+[line_break]
+disabled = true
+
+
+[time]
+disabled = false
+format = '[\[ $time \]]($style) '
+time_format = "%T"
+utc_time_offset = "-8"
+time_range = "10:00:00-14:00:00"
