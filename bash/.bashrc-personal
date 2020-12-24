@@ -22,6 +22,8 @@ alias df='df -ha'
 alias open='xdg-open'
 alias clear='clear && colorscript -r'
 alias vi='vim'
+alias zathura='zathura --fork'
+alias read='cd ~/Documents/Books'
 alias 1='bash ~/Scripts/termite-theme/base16ashes.sh'
 alias 2='bash ~/Scripts/termite-theme/sol-light.sh'
 alias 3='bash ~/Scripts/termite-theme/codenight.sh'
@@ -50,3 +52,6 @@ fi
 
 # Run starship terminal prompt
 eval "$(starship init bash)"
+
+# Run neofetch at startup
+neofetch
