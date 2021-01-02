@@ -51,8 +51,8 @@
 #    rofi -show run -fullscreen
 
 #Rofi
-#super + F12
-#    rofi -show run
+super + F12
+    rofi -show run
 
 #################################################################
 # SUPER + ... KEYS
@@ -95,8 +95,8 @@ super + x
 #    pragha
 
 #Termite
-#super + Return
-#    termite
+super + Return
+    termite
 
 #Xkill
 #super + Escape

@@ -12,17 +12,27 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Noto Sans Mono:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_2[]      	    = "#f0c674";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
+static const char col_black[]       = "#222222"; /* For more colours, search "hex to rgb" */
+static const char col_yellow[] 	    = "#f0c674";
+static const char col_gray_dark[]   = "#bbbbbb";
+static const char col_gray_light[]  = "#eeeeee";
 static const char col_cyan[]        = "#6790EB";
+static const char col_orange[]      = "#EA8A66";
+static const char col_pink[]        = "#fe8193";
+static const char col_salmon[]      = "#f35e4b";
+static const char col_white[]       = "#FFFFFF";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
+
+/*
+ * Notes:
+ * SchemesNorm fg - Bar text colour
+ * SchemeSel bg - Bar colour
+ */
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_cyan },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_2 },
+	[SchemeNorm] = { col_gray_dark, col_black, col_cyan },
+	[SchemeSel]  = { col_black, col_white,  col_yellow },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -47,7 +57,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
@@ -72,12 +82,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray_dark, "-sb", col_cyan, "-sf", col_gray_light, NULL };
 static const char *rofi[]  = { "rofi", "-show", "run", NULL };
 static const char *filecmd[]  = { "nautilus", NULL };
 static const char *firefox[]  = { "firefox", NULL };
 static const char *termite[]  = { "termite", NULL };
 static const char *emacs[]  = { "emacs", NULL };
+static const char *screenshot[]  = { "gscreenshot", NULL };
 static const char *dropdown[]  = { "xfce4-terminal", "--drop-down", NULL };
 static const char *volumeinc[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%+", NULL };
 static const char *volumedec[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
@@ -103,14 +114,16 @@ static Key keys[] = {
 	{ 0,                            XK_F6,     spawn,          {.v = playerctlprev } },
 	{ 0,                            XK_F7,     spawn,          {.v = toggleplay } },
 	{ 0,                            XK_F8,     spawn,          {.v = playerctlnext } },
+	{ 0,                            XK_Print,  spawn,          {.v = screenshot } },
 
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = rofi } },
 	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = filecmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_Tab,    focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },	
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
