@@ -14,7 +14,6 @@ alias vi='vim'
 alias zathura='zathura --fork'
 alias cd..='cd ..'
 alias pdw="pwd"
-alias update='sudo apt update && sudo apt upgrade -y'
 
 #list
 alias ls='ls --color=auto'
