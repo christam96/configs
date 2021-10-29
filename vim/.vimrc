@@ -1,86 +1,23 @@
-"====================="
-"     VIM PLUGINS     "
-"====================="
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
+" {{{ VIM WIKI }}}
+" Specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ " 
-" {{{ PRODUCTIVITY }}}
-Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'preservim/nerdcommenter'
+" Make sure you use single quotes
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+" Any valid git URL is allowed
+" ex. Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+" Multiple Plug commands can be written in a single line using | separators
+" ex. Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'vimwiki/vimwiki'
-Plug 'tpope/vim-surround'
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-" {{{ AESTHETICS }}}
-Plug 'itchyny/lightline.vim'
-set laststatus=2 " Sets bar powerbar for lightline
-" {{{ COLOR SCHEMES }}}
-Plug 'gilgigilgil/anderson.vim'
-Plug 'wadackel/vim-dogrun'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'sheerun/vim-polyglot'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'AlessandroYorba/Alduin'
-Plug 'AlessandroYorba/Sierra'
-Plug 'cocopon/iceberg.vim'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'whatyouhide/vim-gotham'
-Plug 'rakr/vim-one'
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ " 
+" Use MarkDown
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" Initialize plugin system
 call plug#end()
 
-"====================="
-"  SET COLOR SCHEME   "
-"====================="
-syntax on
-"colorscheme morning
-"colorscheme anderson
-"colorscheme dogrun
-"colorscheme dracula
-"set background=dark
-"colorscheme palenight
-"colorscheme alduin
-"colorscheme sierra
-"colorscheme peachpuff
-colorscheme iceberg
-"set background=light
-"colorscheme PaperColor
-"colorscheme deep-space
-"colorscheme gotham
-"let g:palenight_terminal_italics=1 " Enables italics
-"let g:lightline = { 'colorscheme': 'palenight' }
-
-"====================="
-"   MISCELLANEOUS    "
-"====================="
-" {{{ Extend text motions }}}
-let items = [ "<bar>", "\\", "/", ":", ".", "*", "_", "=" ]
-for item in items
-    exe "nnoremap yi".item." T".item."yt".item
-    exe "nnoremap ya".item." F".item."yf".item
-    exe "nnoremap ci".item." T".item."ct".item
-    exe "nnoremap ca".item." F".item."cf".item
-    exe "nnoremap di".item." T".item."dt".item
-    exe "nnoremap da".item." F".item."df".item
-    exe "nnoremap vi".item." T".item."vt".item
-    exe "nnoremap va".item." F".item."vf".item
-endfor
-
-"====================="
-"   LIVE LATEX PREVIEW "
-"====================="
-" Set vim option updatetime to smaller value, affects frequency that LaTeX
-" preview PDF is updated
-autocmd Filetype tex setl updatetime=3000
-let g:livepreview_previewer='evince'
+" {{{ UI Config }}}
+ set number
+" set cursorline " highlight current line
 
 " {{{ Spaces & Tabs }}}
 set tabstop=4 " number of visual spaces per TAB
@@ -91,9 +28,13 @@ set breakindent " indent word-wrapped lines as much as the 'parent' line
 set formatoptions=l
 set lbr " ensures word-wrap does not split words
 
-" {{{ UI Config }}}
-set number
-set cursorline " highlight current line
+" {{{ Movement }}}
+" Make sure lines are traversed in a non-dumb way
+nnoremap j gj
+nnoremap k gk
+ set relativenumber 
+" Enable mouse usage
+set mouse=a
 
 " {{{ Searching }}}
 set incsearch " search as characters are entered
@@ -103,90 +44,9 @@ set smartcase " if search pattern contains upper case, enable case sensitive sea
 " turn off search highlight
 nnoremap <CR> :nohlsearch<CR>
 
-" {{{ Movement }}}
-" Make sure lines are traversed in a non-dumb way
-nnoremap j gj
-nnoremap k gk
-set relativenumber 
-" Enable mouse usage
-set mouse=a
-
-nmap <C-n> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-
-" Mappings
-nmap <F2> :echo 'Current time is ' . strftime('%c')<CR>
-nmap <C-t> :tabnew <CR> 
-nmap <C-w> :tabclose<CR>
-nmap <S-J> :tabp<CR>
-nmap <S-K> :tabn<CR>
-nmap , :tabp<CR>
-nmap . :tabn<CR>
-nmap QQ :q!<CR>
-nmap :light :set background=light
-nmap <C-?> :w !git diff % -<CR>
-nmap LLP :LLPStartPreview<CR>
+" {{{ Mappings }}}
 " Emulate system clipboard shortcuts
 vnoremap <C-c> "+y  
 inoremap <C-v> <ESC>"+pa
-" Adjust vertical window size
-
-if (has("termguicolors"))
-     set termguicolors
-endif
-
-" Toggle file type plugin 
-filetype plugin on
-
-"====================="
-"      SPELL CHECK    "
-"====================="
-" Turn on spell check for EN_CA
-map <F5> :setlocal spell! spelllang=en_ca<CR>
-
-"====================="
-"         FZF         "
-"====================="
-" Open FZF search in Vim
-map <C-f> <Esc><Esc>:FZF ~<CR> 
-inoremap <C-f> <Esc>:BLines!<CR>
-" Let FZF find hidden files and folders
-let $FZF_DEFAULT_COMMAND='find . -not -path "*/\.git*" -type f -print'
-
-"====================="
-"     Indent Line     "
-"====================="
-set listchars=tab:\|\ 
-
-"====================="
-"      VIM WIKI       "
-"====================="
-" Requirements for Vim Wiki (other 'sets' already set)
-set nocompatible
-let vimwiki_dir_link = 'index'
-let g:vimwiki_folding = ''
-" {{{ Define Wikis }}}
-let Wikis = {}
-let Wikis.path = '~/Wikis/'
-let Wikis.path_html = '~/Wikis/'
-let Wikis.ext = '.md'
-let Wikis.syntax = 'markdown'
-
-let g:vimwiki_list = [Wikis]
-
-" {{{ Mappings }}}
-nmap < <Plug>VimwikiGoBackLink
-nmap > <Plug>VimwikiFollowLink
-nmap . <Plug>VimwikiNextLink
-nmap , <Plug>VimwikiPrevLink
-
-command! Diary VimwikiDiaryIndex
-augroup vimwikigroup
-    autocmd!
-    " automatically update links on read diary
-    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
-augroup end
-
-" {{{ Header Colours }}}
-" Use hl-Title color for headers
-let g:vimwiki_h1_headers = 0 
+" Fast quit
+nmap QQ :q!<CR>
